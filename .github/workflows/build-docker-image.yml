@@ -24,16 +24,6 @@ jobs:
         with:
           file: Dockerfile
           platforms: linux/amd64
-          tags: ghcr.io/${{ github.repository }}:stable-amd64
+          tags: ghcr.io/${{ github.repository }}:latest
           build-args: MASTODON_VERSION=v4.2.9
-      - name: Build arm64
-        uses: docker/build-push-action@v5
-        with:
-          file: Dockerfile.aarch64
-          platforms: linux/arm64
-          tags: ghcr.io/${{ github.repository }}:stable-arm64
-          build-args: MASTODON_VERSION=v4.2.9
-      - name: Merge Image
-        run: |
-          docker buildx imagetools create -t ghcr.io/${{ github.repository }}:stable ghcr.io/${{ github.repository }}:stable-amd64 ghcr.io/${{ github.repository }}:stable-arm64
-          docker push ghcr.io/${{ github.repository }}:stable
+          push: true
