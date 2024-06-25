@@ -1,8 +1,11 @@
 name: Upstream Sync
 
 on:
+  push:
+    branches:
+      - fork/**
   schedule:
-    - cron:  '0 0 * * 1'
+    - cron:  '0 0 * * *'
 
   workflow_dispatch:  # click the button on Github repo!
     inputs:
