@@ -20,11 +20,14 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: downcase REPO
+        run: |
+          echo "REPOSITORY=${GITHUB_REPOSITORY,,}" >> ${GITHUB_ENV}
       - name: Build amd64
         uses: docker/build-push-action@v5
         with:
           file: Dockerfile
           platforms: linux/amd64
-          tags: ghcr.io/${{ github.repository }}:latest
+          tags: ghcr.io/${{ env.REPOSITORY }}:latest
           build-args: MASTODON_VERSION=v4.2.9
           push: true
