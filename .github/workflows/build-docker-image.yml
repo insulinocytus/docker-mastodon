@@ -29,5 +29,5 @@ jobs:
           file: Dockerfile
           platforms: linux/amd64
           tags: ghcr.io/${{ env.REPOSITORY }}:latest
-          build-args: MASTODON_VERSION=v4.2.9
+          build-args: MASTODON_VERSION=v4.2.10
           push: true
